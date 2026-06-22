@@ -1,4 +1,4 @@
-Copyright © 2026 Daniel Frank
+Copyright © 2026 by Daniel Frank
 
 All rights reserved.
 
