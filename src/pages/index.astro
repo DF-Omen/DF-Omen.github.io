@@ -1,20 +1,10 @@
 ---
-
+import MainLayout from "/src/layouts/MainLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/dragon.jpeg" />
-		<link rel="icon" href="/dragon.jpeg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Writings of the Majilern</title>
-	</head>
-	<body>
-		<h1>Writings of the Majilern</h1>
-			<p>Books, articles, and essays.</p>
+	<MainLayout title="Home">
+		<h1>Den of the Majilern</h1>
+			<p>Books, and essays.</p>
 			<p><a href="/books">Books</a></p>
-			<p><a href="/articles">Articles</a></p>
-	</body>
-</html>
+			<p><a href="/essays">Essays</a></p>
+	</MainLayout>

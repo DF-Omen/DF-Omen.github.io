@@ -1,21 +1,63 @@
 ---
-
+import MainLayout from "/src/layouts/MainLayout.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
+	<MainLayout title="Books">
 		<h1>The Books of Daniel Ben. Frank</h1>
-			<p>The Summit of Dreams Trilogy.</p>
-			<p><a href="/books/EOTCA">End of the Celestial Afternoon</a></p>
-     		<p><a href="/books/DOD">A Dirge of Dragons</a></p>
-      		<p><a href="/books/MWBBTS">The Man Who Brought Back the Stars</a></p>
-	</body>
+		<h2>The Yarn of Yew</h2>
+			<p>The Summit of Dreams Trilogy</p>
+
+			<div class="books">
+				<a href="/books/EOTCA">
+					<img src="/bookCovers/eotca.jpg" alt="EOTCA" onerror="this.src='/default.jpg';" />
+					<p>The End of the Celestial Afternoon</p>
+				</a>
+
+				<a href="/books/DOD">
+					<img src="/bookCovers/dod.jpg" alt="DOD" onerror="this.src='/default.jpg';" />
+					<p>A Dirge of Dragons</p>
+				</a>
+
+				<a href="/books/MWBBTS">
+					<img src="/bookCovers/mwbbts.jpg" alt="MWBBTS" onerror="this.src='/default.jpg';" />
+					<p>The Man Who Brought Back the Stars</p>
+				</a>
+			</div>
+
+			<p>Following Stories.</p>
+
+			<div class="books">
+				<a href="/books/F">
+					<img src="/bookCovers/f.jpg" alt="F" onerror="this.src='/default.jpg';" />
+					<p>Finis</p>
+				</a>
+
+				<a href="/books/MVSM">
+					<img src="/bookCovers/mvsm.jpg" alt="MVSM" onerror="this.src='/default.jpg';" />
+					<p>The Many Voices of Simon Morre</p>
+				</a>
+
+				<a href="/books/QOTO">
+					<img src="/bookCovers/qoto.jpg" alt="QOTO" onerror="this.src='/default.jpg';" />
+					<p>Question of the Oath</p>
+				</a>
+
+				<a href="/books/TDWAR">
+					<img src="/bookCovers/tdwar.jpg" alt="TDWAR" onerror="this.src='/default.jpg';" />
+					<p>To Dust We All Return</p>
+				</a>
+			</div>
+
+		<h3>Other Projects</h3>
+
+			<div class="books">
+				<a href="/books/VAS">
+					<img src="/bookCovers/vas.jpg" alt ="VAS" onerror="this.src='/default.jpg';" />
+					<p>Velvet and Steel</p>
+				</a>
+
+				<a> </a>
+				<a> </a>
+			</div>
+	</MainLayout>
 </html>

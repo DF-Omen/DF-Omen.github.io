@@ -1,0 +1,38 @@
+.navbar {
+	display: flex;
+	gap: 2.5rem;
+	align-items:center;
+}
+
+body {
+	max-width: 850px;
+	margin: auto;
+	padding: 2rem;
+
+	background-color: #f8f5ef;
+
+	font-family: Georgia, serif;
+
+	line-heigh: 1.8;
+}
+
+.books {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	gap: 2rem;
+}
+
+.books img {
+	width: 100%;
+	border-radius: 8px;
+}
+
+footer {
+	margin-top: 5rem;
+	text-align: center;
+	color: gray;
+}
+
+h1 {
+	text-align: center;
+}
