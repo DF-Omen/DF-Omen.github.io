@@ -1,0 +1,21 @@
+---
+---
+
+<h1>Member Articles</h1>
+
+<p id="status">Checking...</p>
+
+<script type="module">
+  import { supabase } from '../lib/supabase'
+
+    const {
+	     data: { session }
+		    } = await supabase.auth.getSession()
+
+			   if (!session) {
+				    window.location.href = '/login'
+					   } else {
+						    document.getElementById('status').textContent =
+							       `Logged in as ${session.user.email}`
+									   }
+										</script>

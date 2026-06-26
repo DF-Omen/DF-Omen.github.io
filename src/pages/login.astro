@@ -1,0 +1,59 @@
+---
+import MainLayout from "/src/layouts/MainLayout.astro";
+---
+
+	<MainLayout title="Login">
+
+		<h1>Login</h1>
+
+		<form id="login-form">
+
+			<input
+				type="email"
+				id="email"
+				placeholder="Email"
+				required
+			/>
+
+			<br /> <br/>
+
+			<input
+				type="password"
+				id="password"
+				placeholder="Password"
+				required
+			/>
+
+			<button type="submit">
+				Login
+			</button>
+
+		</form>
+
+		<p id="message"></p>
+
+		<script>
+			import { supabase } from '/src/lib/supabase.ts'
+
+			const form = document.getElementById('login-form')
+
+			form.addEventListener('submit', async (e) => {
+				e.preventDefault()
+
+				const email = document.getElementById('email').value
+
+				const password = document.getElementById('password').value
+
+				const message = document.getElementById('message')
+
+				const { error } = await supabase.auth.signInWithPassword({email, password})
+
+				if (error) {
+					message.textContent = error.message
+					return
+				}
+
+				window.location.href = '/'
+			})
+		</script>
+	</MainLayout>
