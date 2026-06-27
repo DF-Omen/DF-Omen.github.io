@@ -1,0 +1,22 @@
+---
+import "/src/styles/global.css";
+import "/src/styles/auth.css";
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+	<link rel="icon" type="image/svg+xml" href="/dragon.jpeg" />
+	<link rel="icon" href="/dragon.jpeg" />
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>{title}</title>
+</head>
+
+<body>
+	<main class="auth-container">
+		<slot />
+	</main>
+</body>
+</html>

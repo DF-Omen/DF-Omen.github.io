@@ -1,12 +1,21 @@
 ---
+import AuthLayout from "/src/layouts/AuthLayout.astro";
 ---
 
+<AuthLayout title="Log Out">
+
 <script type="module">
-  import { supabase } from '../lib/supabase'
+	import { supabase } from '../lib/supabase/client'
 
-    await supabase.auth.signOut()
+	await supabase.auth.signOut()
 
-	   window.location.href = '/'
-		</script>
+	const { error } = await supabase.auth.signOut();
 
-		<p>Logging out...</p>
+	if (!error) {
+		window.location.href = '/'
+	}
+</script>
+
+<p>Logging out...</p>
+
+</AuthLayout>

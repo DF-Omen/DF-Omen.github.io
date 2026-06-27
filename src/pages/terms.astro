@@ -1,0 +1,15 @@
+---
+import MainLayout from "/src/layouts/MainLayout.astro";
+import { terms } from "/src/terms";
+---
+
+	<MainLayout title="Terms of Use">
+		<h1>Terms of Use</h1>
+
+		<u1>
+			{terms.map((term) => (
+				<li>{term}</li>
+			))}
+		</u1>
+
+	</MainLayout>

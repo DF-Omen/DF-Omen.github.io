@@ -1,10 +1,13 @@
 ---
-import MainLayout from "/src/layouts/MainLayout.astro";
+import AuthLayout from "/src/layouts/AuthLayout.astro";
+import { terms } from "/src/terms";
 ---
 
-	<MainLayout title="Home">
+	<AuthLayout title="Sign Up">
 
-	<h1>Sign Up</h1>
+	<div class="auth-card">
+
+	<h1>Create Account</h1>
 
 		<form id="signup-form">
 			<input
@@ -21,11 +24,41 @@ import MainLayout from "/src/layouts/MainLayout.astro";
 				required
 			/>
 
+			<div class="terms-box">
+				<h3>Terms of Use</h3>
+
+				<p>By creating an account, you agree that:</p>
+
+				<ul>
+					{terms.map((term) => (
+						<li>{term}</li>
+					))}
+				</ul>
+			</div>
+
+			<label class="terms-checkbox">
+				<input
+					type="checkbox"
+					id="terms"
+					required
+				/>
+
+				<p>I have read and agree to the Terms of Use.</p>
+			</label>
+
+
 			<button type="submit">Create Account</button>
 		</form>
 
+		<p id="message"></p>
+
+		<div class="auth-links">
+			<p>Already have an account?</p>
+			<a href="/login">Login</a>
+		</div>
+
 		<script>
-			import { supabase } from '/src/lib/supabase.ts'
+			import { supabase } from '/src/lib/supabase/client'
 
 			document
 				.getElementById('signup-form')
@@ -50,4 +83,5 @@ import MainLayout from "/src/layouts/MainLayout.astro";
 						alert('Check your email to verify your account.')}})
 
 			</script>
-		</MainLayout>
+		</div>
+		</AuthLayout>

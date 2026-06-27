@@ -1,8 +1,10 @@
 ---
-import MainLayout from "/src/layouts/MainLayout.astro";
+import AuthLayout from "/src/layouts/AuthLayout.astro";
 ---
 
-	<MainLayout title="Login">
+	<AuthLayout title="Login">
+
+	<div class="auth-card">
 
 		<h1>Login</h1>
 
@@ -15,8 +17,6 @@ import MainLayout from "/src/layouts/MainLayout.astro";
 				required
 			/>
 
-			<br /> <br/>
-
 			<input
 				type="password"
 				id="password"
@@ -27,13 +27,23 @@ import MainLayout from "/src/layouts/MainLayout.astro";
 			<button type="submit">
 				Login
 			</button>
-
 		</form>
 
 		<p id="message"></p>
 
+		<div class="auth-links">
+			<p>Don't have an account?</p>
+			<a href="/signup">Make an account</a>
+		</div>
+	</div>
+
 		<script>
-			import { supabase } from '/src/lib/supabase.ts'
+			import { supabase } from '/src/lib/supabase/client'
+			
+			const params = new URLSearchParams(window.location.search);
+			const nextPage = params.get("next");
+
+			console.log(nextPage);
 
 			const form = document.getElementById('login-form')
 
@@ -53,7 +63,7 @@ import MainLayout from "/src/layouts/MainLayout.astro";
 					return
 				}
 
-				window.location.href = '/'
+				window.location.href = nextPage || "/";
 			})
 		</script>
-	</MainLayout>
+	</AuthLayout>
