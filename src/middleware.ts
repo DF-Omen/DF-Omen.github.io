@@ -1,38 +1,19 @@
 import { defineMiddleware } from "astro:middleware";
 import { createServerSupabase } from "./lib/supabase/server";
+import { getCurrentUser } from "./lib/auth/user";
 
 import { protectedRoutes, authRoutes, approvalRoutes, adminRoutes, }
 	from "./lib/auth/routes";
 
 export const onRequest = defineMiddleware(async (context, next) => {
-	const supabase = createServerSupabase(context);
 
-	const {
-		data: { user },
-		error,
-	} = await supabase.auth.getUser();
-
-	let approved = false;
-	let isAdmin = false;
-
-	if (user) {
-		const { data: profile, error } = await supabase
-			.from("profiles")
-			.select("approved, is_admin")
-			.eq("id", user.id)
-			.single();
-
-			if (!error && profile) {
-				approved = profile.approved;
-				isAdmin = profile.is_admin;
-			}
-		}
+	const auth = await getCurrentUser(context);
 
 	const isProtected = protectedRoutes.some(route =>
 		context.url.pathname.startsWith(route)
 	);
 
-	if (isProtected && !user) {
+	if (isProtected && !auth.isLoggedIn) {
 		const next = encodeURIComponent(context.url.pathname);
 
 		return context.redirect(`/login?next=${next}`);
@@ -43,7 +24,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
 		context.url.pathname.startsWith(route)
 	);
 
-	if (isAuthPage && user) {
+	if (isAuthPage && auth.isLoggedIn) {
 		return context.redirect("/");
 	}
 
@@ -52,7 +33,7 @@ export const onRequest = defineMiddleware(async (context, next) => {
 		context.url.pathname.startsWith(route)
 	);
 
-	if (user && !approved && !isApprovalPage && isProtected) {
+	if (auth.isLoggedIn && !auth.approved && !isApprovalPage && isProtected) {
 		return context.redirect("/pending-approval");
 	}
 
@@ -61,8 +42,8 @@ export const onRequest = defineMiddleware(async (context, next) => {
 		context.url.pathname.startsWith(route)
 	);
 
-	if (isAdminPage && !isAdmin) {
-		context.rewrite("/404");
+	if (isAdminPage && !auth.isAdmin) {
+		return context.rewrite("/404");
 	}
 
 	return next();
